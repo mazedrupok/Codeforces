@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <map>
+#include <math.h>
+using namespace std;
+int main ()
+{
+   long long n, x;
+   while (cin >> n) {
+      long long pos = 0, neg = 0;
+      long long ara[n];
+      for (int i = 0; i < n; i++) {
+         cin >> x;
+         ara[i] = x;
+         if (x < 0) neg++;
+         else pos++;
+      }
+      for (int i = 0; i < n; i++) {
+         long long mi, mx;
+         if (ara[i] == ara[0]) {
+            mi = ara[1] - ara[0];
+            mx = ara[n-1] - ara[0];
+         }
+         else if (ara[i] == ara[n-1]) {
+            mi = ara[n-1] - ara[n-2];
+            mx = ara[n-1] - ara[0];
+         }
+         else {
+            long long mi1, mi2, mx1, mx2;
+            mi1 = ara[i] - ara[i+1]; if (mi1 < 0) mi1 *= (-1);
+            mi2 = ara[i] - ara[i-1]; if (mi2 < 0) mi2 *= (-1);
+            mx1 = ara[i] - ara[n-1]; if (mx1 < 0) mx1 *= (-1);
+            mx2 = ara[i] - ara[0];   if (mx2 < 0) mx2 *= (-1);
+            if (mi1 < mi2) mi = mi1;
+            else mi = mi2;
+            if (mx1 > mx2) mx = mx1;
+            else mx = mx2;
+         }
+         cout << mi << " " << mx << endl;
+      }
+   }
+   return 0;
+}
