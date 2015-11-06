@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <map>
+#include <math.h>
+using namespace std;
+struct data {
+   int x; int y;
+   bool operator < (const data& p) const {return x < p.x;}
+};
+int main ()
+{
+   int n, neg = 0, pos = 0, x, y;
+   while (cin >> n) {
+   data left[1000], right[1000];
+   neg = 0, pos = 0;
+   for (int i = 0; i < n; i++) {
+      cin >> x >> y;
+      if (x == 0) continue;
+      if (x < 0) {
+         left[neg].x = (-1) *x;
+         left[neg].y = y;
+         neg++;
+      }
+      else {
+         right[pos].x = x;
+         right[pos].y = y;
+         pos++;
+      }
+   }
+   sort (right, right+pos); sort (left, left+neg);
+//   for (int i = 0; i < pos; i++) cout << right[i].x << " ";
+//   cout << endl;
+//   for (int i = 0; i < neg; i++) cout << left[i].x << " ";
+//   cout << endl;
+   int res = 0;
+   if (pos == 0) res = left[0].y;
+   else if (neg == 0) res = right[0].y;
+   else if (pos == neg) {
+      for (int i = 0; i < pos; i++) res += right[i].y;
+      for (int i = 0; i < neg; i++) res += left[i].y;
+   }
+   else if (pos > neg) {
+      for (int i = 0; i <= neg; i++) res += right[i].y;
+      for (int i = 0; i < neg; i++) res += left[i].y;
+   }
+   else if (pos < neg) {
+      for (int i = 0; i <= pos; i++) res += left[i].y;
+      for (int i = 0; i < pos; i++) res += right[i].y;
+   }
+   cout << res << endl;
+   }
+   return 0;
+}
