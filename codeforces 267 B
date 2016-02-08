@@ -1,0 +1,20 @@
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+int main ()
+{
+    int n, x, k;
+    double tot = 0.0;
+    scanf (" %d %d", &n, &k);
+    int ara[n];
+    for (int i = 0; i < n; i++)
+        scanf (" %d", &ara[i]);
+    if (k > n) printf ("-1\n");
+    else {
+        sort (ara, ara+n);
+        k = n-k;
+        printf ("%d %d\n", ara[k], ara[k]);
+    }
+    return 0;
+}
