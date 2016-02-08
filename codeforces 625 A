@@ -1,0 +1,41 @@
+//http://codeforces.com/problemset/problem/625/A
+#include <iostream>
+using namespace std;
+int main ()
+{
+    long long n, a, b, c, remaind, c1 = 0, c2 = 0, t1;
+    cin >> n >> a >> b >> c;
+    if (n < a && n < b) {
+        cout << "0" << endl;
+        return 0;
+    }
+    if (n >= a)  {
+        c1 = n / a;
+        remaind = n %a;
+        if (remaind >= b) {
+            remaind -= c;
+            c1 += (remaind / (b-c));
+            t1 = c1 * (b-c);
+            t1 = remaind - t1;
+            t1 += c;
+            if (t1 >= b) c1++;
+        }
+    }
+    if (n >= b) {
+        n = n - c;
+        c2 = n / (b-c);
+        t1 = c2 * (b-c);
+        t1 = n - t1;
+        t1 += c;
+        if (t1 >= b) {
+            c2++;
+            t1 -= (b-c);
+        }
+        if (t1 >= a) {
+            c2 += (t1 / a);
+        }
+    }
+    c1 = max (c1, c2);
+    cout << c1 << endl;
+    return 0;
+}
