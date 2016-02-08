@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int main ()
+{
+    long long n, diff, res;
+    scanf (" %I64d", &n);
+    int ara[n];
+    int mn = 1e9, mx = 0, mncn = 0, mxcn = 0;
+    for (int i = 0; i < n; i++) {
+        scanf (" %d", &ara[i]);
+        if (ara[i] < mn) mn = ara[i];
+        if (ara[i] > mx) mx = ara[i];
+    }
+    if (mx == mn) {
+        diff = 0;
+        res = n * (n-1); res /= 2;
+    }
+    else {
+        diff = mx - mn;
+        for (int i = 0; i < n; i++) {
+            if (ara[i] == mn) mncn++;
+            if (ara[i] == mx) mxcn++;
+        }
+        res = 1ll * mncn * mxcn;
+    }
+    printf ("%I64d %I64d\n", diff, res);
+    return 0;
+}
