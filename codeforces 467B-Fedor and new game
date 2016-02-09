@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int main ()
+{
+    int n, m, k, res, cnt = 0;
+    cin >> n >> m >> k;
+    m++;
+    int ara[m];
+    for (int i = 0; i < m; i++) {
+        cin >> ara[i];
+    }
+    for (int i = 0; i < m-1; i++) {
+        res = ara[i] ^ ara[m-1];
+        if (__builtin_popcount (res) <= k) cnt++;
+    }
+    cout << cnt << endl;
+}
