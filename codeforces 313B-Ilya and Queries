@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cstdio>
+#include <string>
+#include <cstring>
+using namespace std;
+int main ()
+{
+    string s;
+    int m, x, y, res, len;
+    cin >> s;
+    len = s.size();
+    int ara[len+5];
+    memset (ara, 0, sizeof (ara));
+    for (int i = 1; s[i]; i++) {
+        if (s[i-1] != s[i] ) {
+            ara[i+1] = ara[i] + 1;
+        }
+        else ara[i+1] = ara[i];
+    }
+    cin >> m;
+    while (m--) {
+        cin >> x >> y;
+        res = x-y;
+        if (res < 0) res *= -1;
+        res -= ara[y];
+        res += ara[x];
+        cout << res << endl;
+    }
+    return 0;
+}
